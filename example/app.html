@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主应用</title>
+</head>
+<body>
+  <h1>主应用</h1>
+
+  <button id="load-app-a">加载子应用 A</button>
+  <button id="load-app-b">加载子应用 B</button>
+  <button id="clear">卸载子应用</button>
+  <button id="clear-a">卸载子应用 A</button>
+  <button id="clear-b">卸载子应用 B</button>
+
+  <div>来自子应用的信息：<span id="app-info"></span></div>
+
+  <!-- 子应用容器 -->
+  <div id="app-container"></div>
+
+  <script src="./app.js" type="module"></script> <!-- 加载业务代码 -->
+</body>
+</html>
