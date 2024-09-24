@@ -18,9 +18,13 @@ class Sandbox {
 
   createProxy() {
     const sandbox = this.sandbox;
+    const instance = this; // 保存 Sandbox 实例
 
     return new Proxy(window, {
       get(target, prop) {
+        if (!instance.active) {
+          throw new Error(`Sandbox is inactive, cannot access ${prop}`);
+        }
         if (blockedGlobals.includes(prop)) {
           throw new Error(`Access to ${prop} is blocked for security reasons`);
         }
@@ -30,13 +34,22 @@ class Sandbox {
         return target[prop];
       },
       set(target, prop, value) {
+        if (!instance.active) {
+          throw new Error(`Sandbox is inactive, cannot set ${prop}`);
+        }
         sandbox[prop] = value;
         return true;
       },
       has(target, prop) {
+        if (!instance.active) {
+          return false;
+        }
         return prop in sandbox || prop in target;
       },
       deleteProperty(target, prop) {
+        if (!instance.active) {
+          throw new Error(`Sandbox is inactive, cannot delete ${prop}`);
+        }
         if (prop in sandbox) {
           delete sandbox[prop];
         }

@@ -95,8 +95,8 @@ export function unloadApp(appName) {
 
 export function unloadAllApps() {
   // 清空所有子应用的容器并停用沙箱
-  Object.keys(sandboxRegistry).forEach((name) => {
-    unloadApp(name);
+  appRegistry.forEach((app) => {
+    unloadApp(app?.name);
   });
 }
 

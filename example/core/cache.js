@@ -17,7 +17,9 @@ async function fetchApplicationHTML(app) {
     throw new Error(`Failed to load application from ${app?.url}`);
   }
   const html = await response.text();
-  cache[app?.url] = { html, timestamp: now };
+  if (app.cache) {
+    cache[app?.url] = { html, timestamp: now };
+  }
   return html;
 }
 

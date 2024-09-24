@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>App A</title>
   <script src="./a.js"></script>
 </head>
+
 <body>
   <h2>子应用 A</h2>
   <p>这是子应用 A 的内容。</p>
+  <button id="a-append">子应用a通知父应用<</button>
+  <script>
+    // 点击按钮加载子应用 A
+    document.getElementById("a-append").addEventListener("click", async () => {
+      eventBus.emit("app:event", { msg: "子应用A的信息" });
+    });
+
+  </script>
   <style>
-    h2{
-        color: red;
+    h2 {
+      color: red;
     }
   </style>
 </body>
+
 </html>

@@ -1,4 +1,5 @@
 const eventBus = window.eventBus;
+
 // 子应用 A
 export default {
   beforeMount() {
